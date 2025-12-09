@@ -10,8 +10,7 @@ export function CausalManifold() {
 
     // Dynamic import to avoid SSR issues
     const loadThree = async () => {
-      const THREE = (await import('three')).default
-
+    const THREE = await import('three')
       if (!containerRef.current) return
 
       const width = containerRef.current.clientWidth
