@@ -1,62 +1,60 @@
 'use client'
 
 export function ComparisonTable() {
+  const rows = [
+    {
+      attribute: 'Output Determinism',
+      probabilistic: 'Non-deterministic (8–12% variance)',
+      axiom: '100% Identical (Batch-Invariant)',
+    },
+    {
+      attribute: 'Audit Trail',
+      probabilistic: 'Post-hoc explanations (mutable)',
+      axiom: 'Cryptographic proof (immutable)',
+    },
+    {
+      attribute: 'Regulatory Compliance',
+      probabilistic: 'Black-box (GDPR non-compliant)',
+      axiom: 'EU AI Act Art. 13 Automated',
+    },
+    {
+      attribute: 'Hallucination Rate',
+      probabilistic: 'Irreducible (by design)',
+      axiom: '0% (Deterministic constraint)',
+    },
+    {
+      attribute: 'Enterprise Liability',
+      probabilistic: 'Unlimited (uninsurable)',
+      axiom: 'Capped (verifiable)',
+    },
+  ]
+
   return (
-    <div className="overflow-x-auto border border-slate-dark/40 bg-black/30">
-      <table className="min-w-full text-xs md:text-sm font-mono-tight">
-        <thead className="bg-black/70 border-b border-slate-dark/40">
-          <tr>
-            <th className="px-4 py-3 text-left text-slate-dark uppercase tracking-widest">
-              Dimension
+    <div className="overflow-x-auto border border-slate-dark rounded">
+      <table className="w-full text-sm font-sans-clinical">
+        <thead>
+          <tr className="border-b border-slate-dark bg-slate-darker/70">
+            <th className="px-6 py-4 text-left font-mono-tight text-slate-dark uppercase text-xs tracking-widest">
+              Metric
             </th>
-            <th className="px-4 py-3 text-left text-terminal-green uppercase tracking-widest">
-              Deterministic AI (Axiom Hive)
+            <th className="px-6 py-4 text-left font-mono-tight text-warning-amber uppercase text-xs tracking-widest">
+              Probabilistic (OpenAI, Anthropic)
             </th>
-            <th className="px-4 py-3 text-left text-warning-amber uppercase tracking-widest">
-              Stochastic LLMs
+            <th className="px-6 py-4 text-left font-mono-tight text-terminal-green uppercase text-xs tracking-widest">
+              Axiom Hive (Deterministic)
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b border-slate-dark/30">
-            <td className="px-4 py-4 text-slate-dark">Output variance</td>
-            <td className="px-4 py-4 text-terminal-green">
-              100 / 100 identical executions for the same input, config, and state.
-            </td>
-            <td className="px-4 py-4 text-warning-amber">
-              Non-deterministic sampling; answers drift run to run even with fixed prompts.
-            </td>
-          </tr>
-          <tr className="border-b border-slate-dark/30">
-            <td className="px-4 py-4 text-slate-dark">Proof & auditability</td>
-            <td className="px-4 py-4 text-terminal-green">
-              Cryptographic trace of every token and decision for external verification.
-            </td>
-            <td className="px-4 py-4 text-warning-amber">
-              Best-effort logs; no end-to-end proof that a given output is reconstructible.
-            </td>
-          </tr>
-          <tr className="border-b border-slate-dark/30">
-            <td className="px-4 py-4 text-slate-dark">Regulatory posture</td>
-            <td className="px-4 py-4 text-terminal-green">
-              Designed for safety-critical, high-liability workloads and formal oversight.
-            </td>
-            <td className="px-4 py-4 text-warning-amber">
-              Built for productivity; retrofitted controls struggle under safety regimes.
-            </td>
-          </tr>
-          <tr>
-            <td className="px-4 py-4 text-slate-dark">Deployment domain</td>
-            <td className="px-4 py-4 text-terminal-green">
-              Defense, trading, grid, clinical, and other failure-intolerant systems.
-            </td>
-            <td className="px-4 py-4 text-warning-amber">
-              Chat, content generation, and exploratory analysis in low-stakes contexts.
-            </td>
-          </tr>
+          {rows.map((row, i) => (
+            <tr key={i} className="border-b border-slate-dark/50 hover:bg-slate-darker/30">
+              <td className="px-6 py-4 font-mono-tight text-slate-dark">{row.attribute}</td>
+              <td className="px-6 py-4 text-slate-dark/70">{row.probabilistic}</td>
+              <td className="px-6 py-4 text-terminal-green font-bold">{row.axiom}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   )
 }
-

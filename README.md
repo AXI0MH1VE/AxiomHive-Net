@@ -13,12 +13,11 @@ Production-ready Next.js application for Axiom Hive, the world's first determini
 
 ## Tech Stack
 
-- **Next.js 14** (App Router)
-- **TypeScript**
-- **Tailwind CSS** (Custom dark theme)
-- **Framer Motion** (Animations)
-- **Three.js** (3D visualizations)
-- **React Three Fiber** (3D React components)
+- **Next.js 14** (App Router with API Routes)
+- **TypeScript** (Strict mode)
+- **Tailwind CSS** (Custom dark theme with semantic tokens)
+- **Framer Motion** (Smooth animations)
+- **Three.js** (Direct 3D visualizations - no SSR issues)
 
 ## Getting Started
 
@@ -43,18 +42,26 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 ```
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx      # Root layout with navigation
-│   │   ├── page.tsx         # Homepage
-│   │   └── globals.css      # Global styles
+│   │   ├── api/
+│   │   │   └── audit/
+│   │   │       └── route.ts      # API endpoint for audit requests
+│   │   ├── layout.tsx            # Root layout with navigation
+│   │   ├── page.tsx              # Homepage
+│   │   ├── globals.css           # Global styles
+│   │   ├── platform/             # Platform page
+│   │   ├── solutions/            # Solutions page
+│   │   ├── compliance/          # Compliance page
+│   │   ├── research/            # Research page
+│   │   └── dev/                 # Developer docs page
 │   └── components/
-│       ├── CausalManifold.tsx    # 3D grid visualization
+│       ├── CausalManifold.tsx    # 3D grid visualization (Three.js)
 │       ├── HashTicker.tsx        # Live verification hashes
 │       ├── ComparisonTable.tsx   # Probabilistic vs Deterministic comparison
 │       ├── TriLateralHammer.tsx  # Regulatory compliance cards
-│       └── AuditRequestForm.tsx  # Audit request form
-├── tailwind.config.ts       # Tailwind configuration
-├── tsconfig.json            # TypeScript configuration
-└── package.json             # Dependencies
+│       └── AuditRequestForm.tsx  # Audit request form with API integration
+├── tailwind.config.ts            # Tailwind configuration
+├── tsconfig.json                 # TypeScript configuration
+└── package.json                  # Dependencies
 ```
 
 ## Design System

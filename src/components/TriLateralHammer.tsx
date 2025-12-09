@@ -2,51 +2,68 @@
 
 import { motion } from 'framer-motion'
 
-const items = [
-  {
-    id: 'eu',
-    title: 'EU AI Act — High-Risk Systems',
-    body: 'Demands traceability, risk management, and technical documentation that proves how each output is produced.',
-    tag: 'Regulatory substrate',
-  },
-  {
-    id: 'iso',
-    title: 'ISO 26262 — Functional Safety',
-    body: 'Treats software as safety-critical components with explicit failure modes, not opaque black boxes.',
-    tag: 'Safety substrate',
-  },
-  {
-    id: 'finra',
-    title: 'FINRA Rule 3110 — Supervision',
-    body: 'Requires firms to evidence supervision and retention of communications and decisions at scale.',
-    tag: 'Supervisory substrate',
-  },
-]
-
 export function TriLateralHammer() {
+  const cards = [
+    {
+      title: 'EU AI Act (Art. 13 & 19)',
+      subtitle: 'Transparency Achieved',
+      copy: 'Automated generation of regulatory audit logs. Every token is cryptographically linked and timestamped. Compliance becomes code, not checklist.',
+      icon: '📋',
+    },
+    {
+      title: 'FINRA Rule 3110',
+      subtitle: 'Supervision Automated',
+      copy: 'Deterministic execution paths are intrinsically auditable and replayable. Regulators can verify algorithmic decisions in real-time.',
+      icon: '📊',
+    },
+    {
+      title: 'ISO 26262',
+      subtitle: 'Safety Certified',
+      copy: 'Batch-invariant operations guarantee reproducibility. Safety cases become mathematically provable, not statistically probable.',
+      icon: '🔒',
+    },
+  ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  }
+
   return (
-    <div className="grid md:grid-cols-3 gap-8">
-      {items.map((item, index) => (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      className="grid grid-cols-1 md:grid-cols-3 gap-6"
+    >
+      {cards.map((card, i) => (
         <motion.div
-          key={item.id}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: index * 0.08 }}
-          viewport={{ once: true }}
-          className="border border-slate-dark/60 bg-black/50 p-6 flex flex-col justify-between"
+          key={i}
+          variants={itemVariants}
+          className="border border-slate-dark/50 p-6 rounded bg-slate-darker/30 hover:border-terminal-green/50 transition-colors"
         >
-          <div className="text-xs uppercase tracking-widest text-warning-amber mb-3">
-            {item.tag}
-          </div>
-          <div className="text-md font-mono-tight text-white mb-3">
-            {item.title}
-          </div>
-          <p className="text-sm text-slate-dark leading-relaxed">
-            {item.body}
-          </p>
+          <div className="text-2xl mb-2">{card.icon}</div>
+          <h3 className="font-mono-tight text-warning-amber uppercase text-sm tracking-widest mb-2">
+            {card.title}
+          </h3>
+          <h4 className="font-bold text-terminal-green mb-4">{card.subtitle}</h4>
+          <p className="text-slate-dark text-sm leading-relaxed">{card.copy}</p>
         </motion.div>
       ))}
-    </div>
+    </motion.div>
   )
 }
-
