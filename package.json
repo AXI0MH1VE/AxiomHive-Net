@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
-    "next": "^14.1.0",
+    "next": "^14.2.35",
     "framer-motion": "^10.16.0",
     "three": "^0.156.0",
     "@react-three/fiber": "^8.15.0",
